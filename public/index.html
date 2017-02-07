@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="fileData">
+
+	<head>
+  		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src="./angular.js"></script>
+	
+  		<title>Coding Dojo - Jokenpô</title>
+	  	<meta charset="utf-8">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="stylesheets/style.css">
+  	</head>
+
+	<body ng-controller="MainController as controller" id="controller">
+  		<br><br>
+    	<h1>Jokenpô!</h1>
+    	<br>
+    	<div id="LoadAll">
+			<div id="WelcomeMsg">
+	  			Select two image URLs (rock, paper or scissors) for Watson to analyze.
+			</div>
+			<div id="LoadingMsg" class="hidden">
+	  			Watson is calculating the fight for us...
+			</div>
+	  		<br><br>
+			<div style="display:flex; width:100%;">
+	   			<div ng-repeat="player in controller.players" style="width:50%;">
+					<div id="Load{{player.number}}">
+						<h3>Player {{player.number}}</h3>
+						<input type='text' id="{{player.id}}" ng-change="detectData()" ng-model="text"/>
+						<br><br>
+						<img id="loadimg{{player.number}}" class="hidden" style="height:30px;" 
+						data-ng-src="http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_gray_350.gif">
+						<br><br>
+						<div id="invalidUrl{{player.number}}" style="color:red;" class="hidden">
+							URL inválida. Selecione outra URL.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="jokenButton">
+				<br><br>
+				<button ng-click="loadFile()">Fight!</button>
+			</div>
+		</div>
+
+		<div id="game" class="hidden">
+			And the result is:
+			<br><br>
+			<h2 style="background-color:black; color:red;">{{result}}</h2>
+			<br><br>
+			<div style="display:flex; width:100%;">
+				<div ng-repeat="player in controller.players" style="width:50%">
+					Player {{player.number}} has selected the weapon {{player.watsonAnswer}}
+					<br><br>
+					<!-- Desafio 3 - início e fim. Acrescente uma tag aqui! -->
+				</div>
+			</div>
+			
+			<!-- Desafio 2 - início e fim. Acrescente algo ao HTML se desejar! -->
+
+			<br><br>
+		</div>
+		<div id = debug style="float:left; margin-left: 10px; text-align: left;" class="">
+			DEBUG: <br><br>
+			<button ng-click="trainWatson()">Train Watson</button><br><br>
+			<input type="text" id="checkData">
+			<button ng-click="checkData()">Check Watson Data</button><br><br>
+			<button ng-click="checkAllData()">Check All Watson Data</button><br><br>
+			<input type="text" id="deleteData">
+			<button ng-click="deleteData()">Delete Watson Data</button>
+		</div>
+	</body>
+</html>
