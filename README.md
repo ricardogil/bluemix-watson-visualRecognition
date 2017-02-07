@@ -1,2 +1,3 @@
-# bluemix-watson-visualRecognition
-Sample codes for Watson Visual Recognition NodeJS usage through a Jokenpo game
+# Codes for usage of Watson Visual Recognition API in a nodeJS Jokenpo Game
+
+The sample code will require an instance of Watson Visual Recognition Service and a NodeJs SDK running in Bluemix Platform
